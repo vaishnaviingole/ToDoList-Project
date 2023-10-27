@@ -1,0 +1,49 @@
+
+.table1{
+    display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+table {
+    border: 1px solid #ccc; /* Add a border around the table */
+    width: 100%; /* Make the table width 100% of the container */
+    table-layout: auto;
+    background-color: blueviolet;
+  }
+  
+  /* Style for table header */
+  th {
+    border-bottom: 1px solid #ccc; /* Add a line below header cells */
+    background-color: #f0f0f0;
+    padding: 8px;
+    text-align: left;
+    font-weight: bold;
+    width: 100vh;
+  }
+  
+  /* Style for table cells */
+  td {
+    border-bottom: 1px solid #ccc; /* Add a line below content cells */
+    padding: 8px;
+    white-space: nowrap; /* Prevent text from wrapping */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100vh;
+  }
+  
+  /* Style for alternating rows */
+  /* tr:nth-child(even) {
+    background-color: #f9f9f9;
+  } */
+  h1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 1vh;
+    font-family: Arial, Helvetica, sans-serif;
+    
+  }
+  button {background-color: #4CAF50;} /* Green */

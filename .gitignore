@@ -31,3 +31,8 @@ build/
 
 ### VS Code ###
 .vscode/
+
+###nod###
+/node_modules/
+/dist/
+/.parcel-cache/
