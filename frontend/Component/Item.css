@@ -47,15 +47,7 @@ table {
     font-family: Arial, Helvetica, sans-serif;
     
   }
-  .btn2 { background-color: #09fd11; /* Button background color */
-    color: #fff; /* Button text color */
-    padding: 10px 20px; /* Button padding */
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;} /* Green */
-    .btn2:hover {
-      background-color: #219b11; /* Hover background color */
-  }
+  
   .add-task-container {
     text-align: center;
     margin-bottom: 20px; /* Adjust the margin to control spacing */
@@ -72,4 +64,45 @@ table {
 
 .btn1:hover {
     background-color: #0056b3; /* Hover background color */
+}
+.btn1 {
+    background-color: #007bff; /* Button background color */
+    color: #fff; /* Button text color */
+    padding: 10px 20px; /* Button padding */
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.btn1:hover {
+    background-color: #0056b3; /* Hover background color */
+}
+
+.btn2 { background-color: #09fd11; /* Button background color */
+  color: #fff; /* Button text color */
+  padding: 10px 20px; /* Button padding */
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;} /* Green */
+  .btn2:hover {
+    background-color: #219b11; /* Hover background color */
+}
+
+.btn3 { background-color: #2a09fd; /* Button background color */
+  color: #fff; /* Button text color */
+  padding: 10px 20px; /* Button padding */
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;} /* Green */
+  .btn3:hover {
+    background-color: #0a076f; /* Hover background color */
+}
+.btn4 { background-color: #f81f07; /* Button background color */
+  color: #fff; /* Button text color */
+  padding: 10px 20px; /* Button padding */
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;} /* Green */
+  .btn4:hover {
+    background-color: #b40808; /* Hover background color */
 }
