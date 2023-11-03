@@ -47,6 +47,11 @@ public ResponseEntity<?> updateTodo(@PathVariable Long id,@RequestBody Todo todo
 	Todo updateTodo= service.updateTodoItem(id,todo);
 	return ResponseEntity.ok(updateTodo);
 }
+@PutMapping("/completeTODoItem/{id}")
+public ResponseEntity<?> completeTodo(@PathVariable Long id,@RequestBody Todo todo){
+	Todo completeTodo= service.completeTodoItem(id,todo);
+	return ResponseEntity.ok(completeTodo);
+}
 
 @DeleteMapping("/deletToDoItem/{id}")
 public ResponseEntity<?> deleteTodo (@PathVariable Long id){

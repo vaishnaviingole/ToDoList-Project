@@ -44,9 +44,7 @@ public class TodoService {
 		if(todo.getTitle()!=null) {
 			existingTodo.setTitle(todo.getTitle());
 		}
-		if(todo.getStatus()!=null) {
-			existingTodo.setStatus(todo.getStatus());
-		}
+		
 		return repo.save(existingTodo);
 		}
 		else {
@@ -58,6 +56,23 @@ public class TodoService {
 		// TODO Auto-generated method stub
 	   repo.deleteById(id);
 		
+	}
+
+	public Todo completeTodoItem(Long id, Todo todo) {
+		// TODO Auto-generated method stub
+		Optional <Todo> existingTodoOpt= repo.findById(id);
+		if(existingTodoOpt.isPresent()) {
+			Todo existingTodo=existingTodoOpt.get();
+		
+		
+			existingTodo.setStatus(TodoStatus.COMPLETED);
+		
+		
+		return repo.save(existingTodo);
+		}
+		else {
+		return null;
+		}
 	}
  
 

@@ -5,6 +5,8 @@ import TodoService from "./TodoService";
 import "./Item.css";
 import AddTaskModal from './AddTaskModal';
 import EditTaskModal from "./EditTaskModal";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const Item=()=>{
     // state var for viewing list
@@ -18,14 +20,16 @@ const Item=()=>{
         
     };
      
-    //AddTaskmodal
+    //AddTaskstate Variable
     const [OpenModal, setOpenModal] = useState(false);
+    //EditTaskstate Variable
     const [EditOpenModal, EditsetOpenModal] = useState(false);
-    // const handleAddTask = (newTask) => {
-    //     // Implement the logic to add the new task here
-    //     console.log('Adding task:', newTask);
-    //     setIsModalOpen(false); // Close the modal after adding the task
-    //   };
+    //DeleteToast
+    const DeleteTask= () =>{
+      toast.warning("Task Deleted !",{
+        position:toast.POSITION.TOP_RIGHT
+      });
+    };
 return(
     <div className="todoItem">
         <h1 className="text-center">Task List</h1>
@@ -73,14 +77,16 @@ return(
               
             <EditTaskModal open={(EditOpenModal)} onClose={()=> EditsetOpenModal(false)}/>
             
-            <button className="btn4"><i class="fa-solid fa-trash"></i></button></td>
+            <button className="btn4" onClick={DeleteTask}><i class="fa-solid fa-trash"></i></button></td>
+            
+
             </div>
           </tr>)
 
         }
     </tbody>
 </table>
-
+<ToastContainer/>
     </div>
 )
 }
