@@ -7,6 +7,25 @@ import AddTaskModal from './AddTaskModal';
 import EditTaskModal from "./EditTaskModal";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+//method to handel complete task
+const handleCompleteTask = (taskId) => {
+  // Send a request to mark the task as complete
+  TodoService.completeToDo(taskId) // Call your backend endpoint here
+    .then((response) => {
+      if (response.status === 200) {
+        alert('Task completed successfully');
+        // Update your frontend state or UI to reflect the task as completed
+        // For example, you can remove the task from the list or change its appearance.
+      } else {
+        alert('Failed to complete the task');
+        console.error('Failed to complete the task:', response);
+      }
+    })
+    .catch((error) => {
+      alert('An error occurred while completing the task');
+      console.error('Error completing the task:', error);
+    });
+};
 
 const Item=()=>{
     // state var for viewing list
@@ -66,7 +85,7 @@ return(
             <div className="action">
             <td>
               {/* task Done */}
-              <button className="btn2"><i class="fa-solid fa-check" ></i></button>
+              <button className="btn2"><i class="fa-solid fa-check" onClick={() => handleCompleteTask(todo.id)} ></i></button>
                 
 
 

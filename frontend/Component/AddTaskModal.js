@@ -21,7 +21,7 @@ const AddTaskModal = ({ open,onClose }) => {
           />
           </div>
           <div className='btnContainer'>
-            <button className='btnPrimary'>
+            <button className='btnPrimary'onClick={handleAddTask}>
               <span className='bold'>ADD</span>
             </button>
            

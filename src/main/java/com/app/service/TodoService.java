@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.app.entity.Todo;
 import com.app.entity.TodoStatus;
 import com.app.repo.IToDoRepo;
+import com.appp.exception.TodoException;
 
 @Service
 public class TodoService {
@@ -58,21 +59,18 @@ public class TodoService {
 		
 	}
 
-	public Todo completeTodoItem(Long id, Todo todo) {
+	public Todo completeTodoItem(Long id, Todo todo) throws TodoException {
 		// TODO Auto-generated method stub
-		Optional <Todo> existingTodoOpt= repo.findById(id);
-		if(existingTodoOpt.isPresent()) {
-			Todo existingTodo=existingTodoOpt.get();
-		
-		
-			existingTodo.setStatus(TodoStatus.COMPLETED);
-		
-		
-		return repo.save(existingTodo);
-		}
-		else {
-		return null;
-		}
+		 Todo existingTodo = repo.findById(id).orElseThrow(() -> new TodoException("id not found"));
+
+		    // Assuming that "status" is an enum in your Todo class
+		    existingTodo.setStatus(TodoStatus.COMPLETED);
+
+		    // You can update other properties of the Todo here if needed.
+		    // For example, you might want to update the completion date.
+
+		    // Save the updated Todo to the repository
+		    return repo.save(existingTodo);
 	}
  
 

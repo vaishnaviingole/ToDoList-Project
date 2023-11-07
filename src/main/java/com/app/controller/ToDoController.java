@@ -21,6 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.app.entity.Todo;
 import com.app.service.TodoService;
+import com.appp.exception.TodoException;
 
 @RestController
 @RequestMapping("/api")
@@ -47,8 +48,9 @@ public ResponseEntity<?> updateTodo(@PathVariable Long id,@RequestBody Todo todo
 	Todo updateTodo= service.updateTodoItem(id,todo);
 	return ResponseEntity.ok(updateTodo);
 }
+@CrossOrigin(origins = "http://localhost:3000")
 @PutMapping("/completeTODoItem/{id}")
-public ResponseEntity<?> completeTodo(@PathVariable Long id,@RequestBody Todo todo){
+public ResponseEntity<?> completeTodo(@PathVariable Long id,@RequestBody Todo todo) throws TodoException{
 	Todo completeTodo= service.completeTodoItem(id,todo);
 	return ResponseEntity.ok(completeTodo);
 }
