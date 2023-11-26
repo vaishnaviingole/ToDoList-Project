@@ -2,7 +2,15 @@ import React, { useState } from 'react';
 import ReactDOM from "react-dom/client";
 import './logic.css';
 
-const AddTaskModal = ({ open,onClose }) => {
+const AddTaskModal = ({ open, onClose, onCreateTask }) => {
+  const [newTask, setNewTask] = useState('');
+
+  const handleAddTask = () => {
+    // Call the parent component's handleCreateTask function
+    onCreateTask(newTask);
+    // Optionally, you can also close the modal
+    onClose();
+  }
   if(!open) return null;
     
   
@@ -16,8 +24,8 @@ const AddTaskModal = ({ open,onClose }) => {
           <input
             type="text"
             placeholder="Task name"
-            // value={newTask}
-            // onChange={(e) => setNewTask(e.target.value)}
+            value={newTask}
+            onChange={(e) => setNewTask(e.target.value)}
           />
           </div>
           <div className='btnContainer'>

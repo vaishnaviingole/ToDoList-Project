@@ -5,31 +5,32 @@ import TodoService from "./TodoService";
 import "./Item.css";
 import AddTaskModal from './AddTaskModal';
 import EditTaskModal from "./EditTaskModal";
+import { handleCompleteTask, handleDeleteTask,handleCreateTask ,handleUpdateTask } from "./TodoFunctions";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 //method to handel complete task
-const handleCompleteTask = (taskId) => {
-  // Send a request to mark the task as complete
-  TodoService.completeToDo(taskId) // Call your backend endpoint here
-    .then((response) => {
-      if (response.status === 200) {
-        alert('Task completed successfully');
-        // Update your frontend state or UI to reflect the task as completed
-        // For example, you can remove the task from the list or change its appearance.
-      } else {
-        alert('Failed to complete the task');
-        console.error('Failed to complete the task:', response);
-      }
-    })
-    .catch((error) => {
-      alert('An error occurred while completing the task');
-      console.error('Error completing the task:', error);
-    });
-};
+// const handleCompleteTask = (taskId) => {
+//   // Send a request to mark the task as complete
+//   TodoService.completeToDo(taskId) // Call your backend endpoint here
+//     .then((response) => {
+//       if (response.status === 200) {
+//         alert('Task completed successfully');
+//         // Update your frontend state or UI to reflect the task as completed
+//         // For example, you can remove the task from the list or change its appearance.
+//       } else {
+//         alert('Failed to complete the task');
+//         console.error('Failed to complete the task:', response);
+//       }
+//     })
+//     .catch((error) => {
+//       alert('An error occurred while completing the task');
+//       console.error('Error completing the task:', error);
+//     });
+// };
 
 const Item=()=>{
     // state var for viewing list
-    const [todoItem,setTodoItem]=useState([])
+    const [todoItem,setTodoItem]=useState([]);
     useEffect(()=>{getToDo()},[])
     const getToDo= () =>{
         TodoService.getToDo().then((response)=>{
@@ -62,7 +63,7 @@ return(
       >
         Add New Task
       </button>
-      <AddTaskModal open={(OpenModal)} onClose={()=> setOpenModal(false)}/>
+      <AddTaskModal open={(OpenModal)} onClose={()=> setOpenModal(false)}  onCreateTask={(title) =>{console.log('Titles:', title); handleCreateTask(title, getToDo,setTodoItem)}}/>
             </div>
 <table className="table1">
     <thead>
@@ -94,9 +95,16 @@ return(
           EditsetOpenModal(true);
         }}></i></button>
               
-            <EditTaskModal open={(EditOpenModal)} onClose={()=> EditsetOpenModal(false)}/>
+              <EditTaskModal
+                  open={EditOpenModal}
+                  onClose={() => EditsetOpenModal(false)}
+                  onUpdateTask={(updatetitle) =>
+                    handleUpdateTask(todo.id, updatetitle, getToDo, setTodoItem)
+                  }
+                  initialTitle={todo.title} // Pass the initial title
+                />
             
-            <button className="btn4" onClick={DeleteTask}><i class="fa-solid fa-trash"></i></button></td>
+            <button className="btn4"  onClick={() => handleDeleteTask(todo.id, DeleteTask, getToDo)}><i class="fa-solid fa-trash"></i></button></td>
             
 
             </div>

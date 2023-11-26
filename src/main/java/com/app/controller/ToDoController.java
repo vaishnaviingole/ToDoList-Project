@@ -25,7 +25,7 @@ import com.appp.exception.TodoException;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin("*")
 public class ToDoController {
 private TodoService service;
 @Autowired

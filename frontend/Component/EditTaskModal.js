@@ -1,8 +1,22 @@
 import React, { useState } from 'react';
 import ReactDOM from "react-dom/client";
+import { useEffect } from 'react';
 import './logic.css';
 
-const EditTaskModal = ({ open,onClose }) =>{
+const EditTaskModal = ({ open, onClose, onUpdateTask,initialTitle }) => {
+  const [Task, setUpdateTask] = useState('');
+
+  useEffect(() => {
+    setUpdateTask(initialTitle || ''); // Use an empty string if initialTitle is undefined
+  }, [initialTitle]);
+
+
+  const handleUpdateTask = () => {
+    // Call the parent component's handleCreateTask function
+    onUpdateTask(Task);
+    // Optionally, you can also close the modal
+    onClose();
+  }
     if(!open) return null;
     return(
        
@@ -15,12 +29,12 @@ const EditTaskModal = ({ open,onClose }) =>{
               <input
                 type="text"
                 placeholder="Task name"
-                // value={newTask}
-                // onChange={(e) => setNewTask(e.target.value)}
+                value={Task}
+                onChange={(e) => setUpdateTask(e.target.value)}
               />
               </div>
               <div className='btnContainer'>
-                <button className='btnPrimary'>
+                <button className='btnPrimary' onClick={handleUpdateTask}>
                   <span className='bold'>Done</span>
                 </button>
                
